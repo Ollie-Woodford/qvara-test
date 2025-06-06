@@ -39,7 +39,7 @@ if openai_api_key:
 
             print(response)
 
-    if response.choices and hasattr(response.choices[0], 'message') and is instance(response.choices[0].message, dict): 
+    if response.choices and hasattr(response.choices[0], 'message') and isinstance(response.choices[0].message, dict): 
         reply = response.choices[0].message["content"]
     
     else:
