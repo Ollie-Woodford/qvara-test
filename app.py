@@ -39,7 +39,8 @@ if openai_api_key:
 
             print(response)
 
-    if response.choices and hasattr(response.choices[0], 'message') and isinstance(response.choices[0].message, dict): reply = response.choices[0].message["content"]
+    if response.choices and hasattr(response.choices[0], 'message') and isinstance(response.choices[0].message, dict): 
+        reply = response.choices[0].message["content"]
     
     else:
             reply = "Error: Unexpected response format from OpenAI API"
