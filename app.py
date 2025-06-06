@@ -27,8 +27,7 @@ if openai_api_key:
             )
             messages = [
                 {"role": "system", "content": system_prompt},
-                {"role": "system", "content": f"Reference info:
-{context}"},
+                {"role": "system", "content": f"Reference info:\n{context}"},
                 {"role": "user", "content": user_input},
             ]
             response = client.chat.completions.create(
