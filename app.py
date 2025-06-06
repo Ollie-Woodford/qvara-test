@@ -35,10 +35,9 @@ if openai_api_key:
                 messages=messages,
                 temperature=0.3,
             )
-            reply = response.choices[0].message["content"]
-
-            print(response)
-
+            reply = 
+                response.choices[0].message["content"]
+            
     if response.choices and hasattr(response.choices[0], 'message') and isinstance(response.choices[0].message, dict): 
         reply = response.choices[0].message["content"]
     
