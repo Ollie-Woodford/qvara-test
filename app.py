@@ -1,5 +1,5 @@
 import streamlit as st
-from openai import OpenAI
+import openai
 from retriever import get_qvara_snippet
 
 st.set_page_config(page_title="Qvara AI Assistant", layout="centered")
@@ -10,7 +10,7 @@ st.write("Ask me anything about Qvara's platform, risk analytics, or trading fea
 openai_api_key = st.text_input("Enter your OpenAI API Key", type="password")
 
 if openai_api_key:
-    client = OpenAI(api_key=openai_api_key)
+    openai.api_key = openai_api_key
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -30,12 +30,12 @@ if openai_api_key:
                 {"role": "system", "content": f"Reference info:\n{context}"},
                 {"role": "user", "content": user_input},
             ]
-            response = client.chat.completions.create(
+            response = openai.ChatCompletion.create(
                 model="gpt-4",
                 messages=messages,
                 temperature=0.3,
             )
-            reply = response.choices[0].message.content
+            reply = response.choices[0].message["content"]
             st.session_state.messages.append({"role": "assistant", "content": reply})
 
     for msg in st.session_state.messages:
