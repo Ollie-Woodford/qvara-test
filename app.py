@@ -31,7 +31,7 @@ if openai_api_key:
                 {"role": "user", "content": user_input},
             ]
             response = client.chat.completions.create(
-                model="gpt-4o",
+                model="gpt-4.1-mini",
                 messages=messages,
                 temperature=0.3,
             )
