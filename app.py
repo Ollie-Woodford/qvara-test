@@ -30,12 +30,20 @@ if openai_api_key:
                 {"role": "system", "content": f"Reference info:\n{context}"},
                 {"role": "user", "content": user_input},
             ]
-            response = client.chat.completions.create(
+            response = client.ChatCompletions.create(
                 model="gpt-4.1-mini",
                 messages=messages,
                 temperature=0.3,
             )
             reply = response.choices[0].message["content"]
+
+            print(response)
+
+            if response.choices and hasattr(response.choices[0], 'message') and isinstance(response.choices[0].message, dict):
+            reply = response.choices[0].message["content"]
+            else:
+            reply = "Error: Unexpected response format from OpenAI API"
+            
             st.session_state.messages.append({"role": "assistant", "content": reply})
 
     for msg in st.session_state.messages:
